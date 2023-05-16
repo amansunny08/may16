@@ -6,3 +6,5 @@ jobs:
       steps:
         - name: run echo command
           run: echo "Hello World"
+        - name: print gihub workflow id
+          run: echo "Your workflow id is ${{ github.run_id }}"
