@@ -36,5 +36,5 @@ jobs:
               echo "$ID"     
               headers='Content-Type: application/json'
               abc=$(curl --location -w "%http_code" --request GET "$ID" --header "$headers")
-              echo "$abc"
+              # echo "$abc"
                  
