@@ -24,7 +24,7 @@ jobs:
               echo "Name of workflow ${GITHUB_WORKFLOW}"
               echo "${{ github.job}}"
               echo "${{ github.run_id}}"
-              echo "{GITHUB_RUN_NUMBER}"
-              echo "{RUN_ID}"
+              echo "${GITHUB_RUN_NUMBER}"
+              echo "${RUN_ID}"
               echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${{github.run_id}}/${{ github.job }}"
                  
