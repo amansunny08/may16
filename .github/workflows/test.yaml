@@ -30,16 +30,27 @@ jobs:
               echo "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
 
 
-        - name: demo
-          run: |
-              ID=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID 
-              echo "$ID"     
-              headers='Content-Type: application/json'
-              abc=$(curl --location -w "%http_code" --request GET "$ID" --header "$headers")
-              # echo "$abc"
+        # - name: demo
+        #   run: |
+        #       ID=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID 
+        #       echo "$ID"     
+        #       headers='Content-Type: application/json'
+        #       abc=$(curl --location -w "%http_code" --request GET "$ID" --header "$headers")
+        #       # echo "$abc"
                  
-              responseCode=$(tail -n1 <<< "$abc")
-              echo $responseCode  
-              if [[ "$responseCode" == "200" ]]; then
-                  echo "Code ran successfull"
-              fi    
+        #       responseCode=$(tail -n1 <<< "$abc")
+        #       echo $responseCode  
+        #       if [[ "$responseCode" == "200" ]]; then
+        #           echo "Code ran successfull"
+        #       fi    
+
+        - name: Make HTTP Request
+          id: http_request
+          run: |
+            ID=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+            status_code=$(curl --write-out "%{http_code}" --silent --output /dev/null "$ID")
+            echo "::set-output name=status_code::$status_code"
+
+        - name: Check Status Code
+          run: |
+            echo "The HTTP status code is: ${{ steps.http_request.outputs.status_code }}"
