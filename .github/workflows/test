@@ -58,3 +58,12 @@ jobs:
         - name: Check Status Code
           run: |
             echo "The HTTP status code is: ${{ steps.http_request.outputs.status_code }}"
+
+
+    summary: 
+       Steps:
+          - run echo command
+          - print gihub workflow id
+          - show github env
+          - Make HTTP Request
+          - Check Status Code
