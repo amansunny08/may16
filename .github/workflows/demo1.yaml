@@ -20,8 +20,9 @@ jobs:
       run: |
         echo "Step 3 executed"
     - name: output
-      run: 
-           echo "${{ job.steps.step1.outcome }}" >> $GITHUB_STEP_SUMMARY  
+      run: |
+           echo "${{ job.steps.step1.outcome }}" >> $GITHUB_STEP_SUMMARY 
+           echo "$ ${{ job.steps.step1.conclusion }}" >> $GITHUB_STEP_SUMMARY  
 
 # summary: |
 #     Steps:
