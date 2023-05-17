@@ -1,0 +1,28 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Step 1
+      id: step1
+      run: |
+        echo "Step 1 executed"
+    
+    - name: Step 2
+      id: step2
+      run: |
+        echo "Step 2 executed"
+    
+    - name: Step 3
+      id: step3
+      run: |
+        echo "Step 3 executed"
+    - name: output
+      run: 
+           echo "${{ job.steps.step1.outcome }}" >> $GITHUB_STEP_SUMMARY  
+
+# summary: |
+#     Steps:
+#      - Step 1: ${{ job.steps.step1.outcome }}
+#      - Step 2: ${{ job.steps.step2.outcome }}
+#      - Step 3: ${{ job.steps.step3.outcome }}
