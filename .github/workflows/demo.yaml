@@ -33,7 +33,7 @@ jobs:
       run: |
          echo '### Hello world! 🚀' >> $GITHUB_STEP_SUMMARY  
          ID=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
-         echo "$ID" >>  >> $GITHUB_STEP_SUMMARY
+         echo "$ID" >> $GITHUB_STEP_SUMMARY
   
   # summary: |
   #   Steps:
