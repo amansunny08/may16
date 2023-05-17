@@ -21,6 +21,6 @@ jobs:
         - name: show github env
           run: |
               echo "Path to workflow ${GITHUB_WORKFLOW_REF}"
-              echo "Name of workflow ${GITHUB_WORKFLOW}""
+              echo "Name of workflow ${GITHUB_WORKFLOW}"
               echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${{github.run_id}}/${{ github.job }}"
                  
