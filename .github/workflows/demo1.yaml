@@ -1,4 +1,4 @@
-name: demo1
+name: mydemo
 on: push
 jobs:
   build:
@@ -19,13 +19,14 @@ jobs:
       id: step3
       run: |
         echo "Step 3 executed"
-    - name: output
-      run: |
-           echo "${{ job.steps.step1.outcome }}" >> $GITHUB_STEP_SUMMARY 
-           echo "$ ${{ job.steps.step1.conclusion }}" >> $GITHUB_STEP_SUMMARY  
 
-# summary: |
-#     Steps:
-#      - Step 1: ${{ job.steps.step1.outcome }}
-#      - Step 2: ${{ job.steps.step2.outcome }}
-#      - Step 3: ${{ job.steps.step3.outcome }}
+  summary: |
+    Steps:
+    - Step 1: ${{ job.steps.step1.outcome }}
+    - Step 2: ${{ job.steps.step2.outcome }}
+    - Step 3: ${{ job.steps.step3.outcome }}
+
+    Step Status Results:
+    - Step 1: ${{ job.steps.step1.conclusion }}
+    - Step 2: ${{ job.steps.step2.conclusion }}
+    - Step 3: ${{ job.steps.step3.conclusion }}
