@@ -40,6 +40,6 @@ jobs:
                  
               responseCode=$(tail -n1 <<< "$abc")
               echo $responseCode  
-              if [[ "$responseCode" == 200 ]]; then
+              if [[ "$responseCode" == "200" ]]; then
                   echo "Code ran successfull"
               fi    
