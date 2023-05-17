@@ -38,3 +38,6 @@ jobs:
               abc=$(curl --location -w "%http_code" --request GET "$ID" --header "$headers")
               # echo "$abc"
                  
+              responseCode=$(tail -n1 << "$abc")
+              echo $responseCode  
+              car $responseCode
