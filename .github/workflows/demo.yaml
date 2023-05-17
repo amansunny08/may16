@@ -34,6 +34,11 @@ jobs:
          echo '### Hello world! 🚀' >> $GITHUB_STEP_SUMMARY  
          ID=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
          echo "$ID" >> $GITHUB_STEP_SUMMARY
+#  summary: |
+#     Steps:
+#     - Step 1: ${{ job.steps.step1.outcome }}
+#     - Step 2: ${{ job.steps.step2.outcome }}
+#     - Step 3: ${{ job.steps.step3.outcome }}       
   
   # summary: |
   #   Steps:
