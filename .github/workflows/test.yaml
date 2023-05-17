@@ -49,7 +49,7 @@ jobs:
           run: |
             ID=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
             status_code=$(curl --write-out "%{http_code}" --silent --output /dev/null "$ID")
-            echo "::set-output name=status_code::$status_code"0
+            echo "::set-output name=status_code::$status_code"
             echo $responseCode  
             if [[ "$status_code" == "200" ]]; then
                 echo "Code ran successfull"
