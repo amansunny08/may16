@@ -1,0 +1,39 @@
+name: demo 
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Step 1
+      run: |
+        echo "Step 1 executed"
+    
+    - name: Step 2
+      run: |
+        echo "Step 2 executed"
+    
+    - name: Step 3
+      run: |
+        echo "Step 3 executed"
+
+    - name: Step 4
+      run: |
+        echo "Step 4 executed"
+
+    - name: Step 5
+      run: |
+        echo "Step 5 executed"
+    
+    - name: Final Step
+      run: |
+        echo "Final Step executed"
+  
+  summary: |
+    Steps:
+    - Step 1
+    - Step 2
+    - Step 3
+    - Step 4
+    - Step 5
+    - Final Step
