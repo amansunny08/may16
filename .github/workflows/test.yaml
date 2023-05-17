@@ -22,5 +22,8 @@ jobs:
           run: |
               echo "Path to workflow ${GITHUB_WORKFLOW_REF}"
               echo "Name of workflow ${GITHUB_WORKFLOW}"
+              echo "${{ github.job }}"
+              echo "${{ github.job_ }}
+              echo "{GITHUB_RUN_NUMBER}"
               echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${{github.run_id}}/${{ github.job }}"
                  
