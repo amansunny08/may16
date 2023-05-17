@@ -44,26 +44,34 @@ jobs:
         #           echo "Code ran successfull"
         #       fi    
 
-        - name: Make HTTP Request
-          id: http_request
+        # - name: Make HTTP Request
+        #   id: http_request
+        #   run: |
+        #     ID=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+        #     status_code=$(curl --write-out "%{http_code}" --silent --output /dev/null "$ID")
+        #     echo "::set-output name=status_code::$status_code"
+        #     echo $responseCode  
+        #     if [[ "$status_code" == "200" ]]; then
+        #         echo "Code ran successfull"
+        #     fi  
+
+        # - name: Check Status Code
+        #   run: |
+        #     echo "The HTTP status code is: ${{ steps.http_request.outputs.status_code }}"
+        - name: Adding markdown
           run: |
+            echo '### Hello world! 🚀' >> $GITHUB_STEP_SUMMARY  
             ID=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
-            status_code=$(curl --write-out "%{http_code}" --silent --output /dev/null "$ID")
-            echo "::set-output name=status_code::$status_code"
-            echo $responseCode  
-            if [[ "$status_code" == "200" ]]; then
-                echo "Code ran successfull"
-            fi  
+            echo "$ID" >> $GITHUB_STEP_SUMMARY
+            echo "Job status: ${{ job.status }} ">> $GITHUB_STEP_SUMMARY
 
-        - name: Check Status Code
+        - name: demo_test
           run: |
-            echo "The HTTP status code is: ${{ steps.http_request.outputs.status_code }}"
-
-
-    summary: 
-       Steps:
-          - run echo command
-          - print gihub workflow id
-          - show github env
-          - Make HTTP Request
-          - Check Status Code
+              {
+                echo "### :rocket: Workflow inputs"
+                echo "| Arg                 | Value |"
+                echo "| ------------------- | ----- |"
+                echo "| Print inputs        | ${{ inputs.print-inputs }} |"
+                echo "| Environment         | ${{ inputs.environment }} |"
+                echo "| Cluster             | ${{ inputs.cluster }} |"
+              } >> $GITHUB_STEP_SUMMARY     
