@@ -34,4 +34,7 @@ jobs:
           run: |
               ID=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID 
               echo "$ID"     
+              headers='Content-Type: application/json'
+              abc=$(curl --location -w "%http_code" --request GET "$ID" --header "$headers")
+              echo "$abc"
                  
