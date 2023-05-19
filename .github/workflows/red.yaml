@@ -1,7 +1,16 @@
 name: red
 on: push
 jobs:
+   demo_job:
+      runs-on: ubuntu-latest
+      steps:
+         - name: h1 
+           run: echo "Hello World"
+         - name: h2
+           run: echo "Hello world2"  
+   
    first-job:
+      needs: demo_job
       runs-on: ubuntu-latest
       steps:
          - name: step 1
