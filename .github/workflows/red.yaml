@@ -47,6 +47,6 @@ jobs:
                   "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/jobs/${ID}" \
                   | jq -r '.jobs[].conclusion')
 
-              for status in $steps_status; do
-                echo "Step Status: $status"
-              done  
+              # for status in $steps_status; do
+              #   echo "Step Status: $status"
+              # done  
