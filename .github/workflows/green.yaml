@@ -15,6 +15,10 @@ jobs:
            if: ( 'a' == 'b')
            run: echo "Hello aman"    
 
+         - name: step 3
+           continue-on-error: true
+           run:  "Hello aman"
+
          - name: print run id and data
            run: |
               ID=$(curl -L \
