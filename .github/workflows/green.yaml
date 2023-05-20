@@ -24,8 +24,8 @@ jobs:
                 "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/jobs/${ID}" >> abc.json
               
               table=""
-              table+= "|  number |  Name |  Status | \n"
-              table+= "|  --- |  --- |  --- | \n"
+              table+="|  number |  Name |  Status | \n"
+              table+="|  --- |  --- |  --- | \n"
               echo "## Steps" >> $GITHUB_STEP_SUMMARY
               echo "**URL" >> $GITHUB_STEP_SUMMARY
               # echo "| Step number | Step Name | Step Status |" >> $GITHUB_STEP_SUMMARY
