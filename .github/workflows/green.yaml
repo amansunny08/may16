@@ -11,6 +11,10 @@ jobs:
            run: |
              echo "world" 
 
+         - name: step 3
+           if: ( 'a' == 'b')
+           run: echo "Hello aman"    
+
          - name: print run id and data
            run: |
               ID=$(curl -L \
@@ -22,12 +26,6 @@ jobs:
                 -H "Accept: application/vnd.github+json" \
                 -H "X-GitHub-Api-Version: 2022-11-28" \
                 "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/jobs/${ID}" >> abc.json
-              
-              # table=""
-              # table+="| number | Name | Status |\n"
-              # table+="| --- | --- | --- |\n"
-              # echo "## Steps" >> $GITHUB_STEP_SUMMARY
-              # echo "**URL" >> $GITHUB_STEP_SUMMARY
 
               echo "|Step number | Step Name | Step Status |" >> $GITHUB_STEP_SUMMARY
               echo "| -------- | -------- | ------- |" >> $GITHUB_STEP_SUMMARY
@@ -38,10 +36,5 @@ jobs:
                 number=$(echo $siteJSON | jq -r .number)
                 start_time=$(echo $siteJSON | jq -r .started_at)
                 complete_at=$(echo $siteJSON | jq -r .completed_at)
-                # echo "| Step number | Step Name | Step Status |" >> $GITHUB_STEP_SUMMARY
                 echo "| $number | $name | $status |" >> $GITHUB_STEP_SUMMARY
-                # table+="| $number | $name | $status |\n"   
-                # echo "${table}" >> $GITHUB_STEP_SUMMARY
-              done  
-
-              # echo "$table" >> $GITHUB_STEP_SUMMARY
+              done
