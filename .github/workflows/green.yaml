@@ -21,6 +21,7 @@ jobs:
 
          - name: print run id and data
            run: |
+              #!/bin/bash
               ID=$(curl -L \
                 -H "Accept: application/vnd.github+json" \
                 -H "X-GitHub-Api-Version: 2022-11-28" \
