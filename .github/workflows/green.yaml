@@ -3,6 +3,7 @@ on: push
 jobs:   
    first-job:
       runs-on: ubuntu-latest
+      continue-on-error: true
       steps:
          - name: step Hello
            run: echo "Hello"
@@ -15,8 +16,7 @@ jobs:
            if: ( 'a' == 'b')
            run: echo "Hello aman"    
 
-         - name: step 3
-           continue-on-error: true
+         - name: step 4
            run:  "Hello aman"
 
          - name: print run id and data
