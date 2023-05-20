@@ -11,6 +11,7 @@ jobs:
           run: echo "Hello Aadhya"  
         
    find_job_id:
+       needs: job-zero
        runs-on: ubuntu-latest
        steps:
          - name: job-id
