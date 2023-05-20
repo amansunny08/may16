@@ -1,0 +1,24 @@
+name: red
+on: push
+jobs:   
+   first-job:
+      runs-on: ubuntu-latest
+      steps:
+         - name: step Hello
+           run: echo "Hello"
+
+         - name: step world
+           run: |
+             echo "world" 
+
+         - name: print run id and data
+           run: |
+              ID=$(curl -L \
+                -H "Accept: application/vnd.github+json" \
+                -H "X-GitHub-Api-Version: 2022-11-28" \
+                https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/attempts/${GITHUB_RUN_ATTEMPT}/jobs | jq .jobs[].id)
+              
+              curl -L \
+                -H "Accept: application/vnd.github+json" \
+                -H "X-GitHub-Api-Version: 2022-11-28" \
+                "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/jobs/${ID}"   >> $GITHUB_STEP_SUMMARY
