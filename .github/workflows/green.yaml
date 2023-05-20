@@ -39,6 +39,7 @@ jobs:
                 # echo "| Step number | Step Name | Step Status |" >> $GITHUB_STEP_SUMMARY
                 # echo "| $number     | $name     | $status     |"
                 table+="| ${number} | ${name} | ${status} |\n"   
+                echo "${table}" >> $GITHUB_STEP_SUMMARY
               done  
 
               echo "${table}" >> $GITHUB_STEP_SUMMARY
