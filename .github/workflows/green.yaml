@@ -25,7 +25,7 @@ jobs:
               
               table=""
               table+="|  number |  Name |  Status |"
-              table+="|  ------ |  ---- |  ------ |"
+              table+="|  --- |  --- |  --- |"
               echo "## Steps" >> $GITHUB_STEP_SUMMARY
               echo "**URL" >> $GITHUB_STEP_SUMMARY
               # echo "| Step number | Step Name | Step Status |" >> $GITHUB_STEP_SUMMARY
