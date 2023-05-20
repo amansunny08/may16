@@ -2,7 +2,7 @@ name: red
 on: push
 jobs:   
    first-job:
-      runs-on: ubuntu-latest
+      runs-on: windows-latest
       steps:
          - name: step Hello
            run: echo "Hello"
