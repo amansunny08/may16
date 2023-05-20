@@ -21,14 +21,14 @@ jobs:
               data=$(curl -L \
                 -H "Accept: application/vnd.github+json" \
                 -H "X-GitHub-Api-Version: 2022-11-28" \
-                "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/jobs/${ID}" | jq -c '.steps | map(.) | .[]')
+                "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/jobs/${ID}")
 
-              while read siteJSON
-                do 
-                  name=$(echo $siteJSON | jq -r .name) 
-                  status=$(echo $siteJSON | jq -r .conclusion) 
-                  number=$(echo $siteJSON | jq -r .number)
-                  start_time=$(echo $siteJSON | jq -r .started_at)
-                  complete_at=$(echo $siteJSON | jq -r .completed_at)
-                  echo "$number| $name | $status | Start time: $start_time | End Time: $complete_at" >> $GITHUB_STEP_SUMMARY
+              jq -c '.steps | map(.) | .[]' $data | while read siteJSON;
+              do 
+                name=$(echo $siteJSON | jq -r .name) 
+                status=$(echo $siteJSON | jq -r .conclusion) 
+                number=$(echo $siteJSON | jq -r .number)
+                start_time=$(echo $siteJSON | jq -r .started_at)
+                complete_at=$(echo $siteJSON | jq -r .completed_at)
+                echo "$number| $name | $status | Start time: $start_time | End Time: $complete_at" >> $GITHUB_STEP_SUMMARY
               done  
