@@ -12,57 +12,64 @@ jobs:
         
    find_job_id:
        needs: job-zero
+       outputs:
+          output1: ${{ steps.job-id.outputs.test }}
        runs-on: ubuntu-latest
        steps:
          - name: job-id
+           id: set-matrix
            run: |
               ID=$(curl -L \
                 -H "Accept: application/vnd.github+json" \
                 -H "X-GitHub-Api-Version: 2022-11-28" \
                 https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/attempts/${GITHUB_RUN_ATTEMPT}/jobs | jq .jobs[].id)
 
-              echo "$ID" >> $GITHUB_STEP_SUMMARY      
+              echo "test=$ID" >> "$GITHUB_OUTPUT"   
+              echo "$ID" >> $GITHUB_STEP_SUMMARY  
 
-  #  first-job:
-  #     needs: job-zero
-  #     runs-on: ubuntu-latest
-  #     steps:
-  #        - name: step Hello
-  #          run: echo "Hello"
+   first-job:
+      needs: find_job_id
+      runs-on: ubuntu-latest
+      strategy:
+        matrix: 
+            ID: ${{fromJson(needs.find_job_id.outputs.output1)}}
+      steps:
+         - name: step Hello
+           run: echo "Hello"
 
-  #        - name: step world
-  #          run: |
-  #            echo "world" 
+         - name: step world
+           run: |
+             echo "world" 
 
-  #        - name: step 3
-  #          if: ( 'a' == 'b')
-  #          run: echo "Hello aman"    
+         - name: step 3
+           if: ( 'a' == 'b')
+           run: echo "Hello aman"    
 
-  #        - name: step 4
-  #         #  continue-on-error: 
-  #          run:  echo "Hello aman"
+         - name: step 4
+          #  continue-on-error: 
+           run:  echo "Hello aman"
 
-  #        - name: print run id and data
-  #          run: |
-  #             #!/bin/bash
-  #             ID=$(curl -L \
-  #               -H "Accept: application/vnd.github+json" \
-  #               -H "X-GitHub-Api-Version: 2022-11-28" \
-  #               https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/attempts/${GITHUB_RUN_ATTEMPT}/jobs | jq .jobs[].id)
+         - name: print run id and data
+           run: |
+              # #!/bin/bash
+              # ID=$(curl -L \
+              #   -H "Accept: application/vnd.github+json" \
+              #   -H "X-GitHub-Api-Version: 2022-11-28" \
+              #   https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/attempts/${GITHUB_RUN_ATTEMPT}/jobs | jq .jobs[].id)
               
-  #             curl -L \
-  #               -H "Accept: application/vnd.github+json" \
-  #               -H "X-GitHub-Api-Version: 2022-11-28" \
-  #               "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/jobs/${ID}" >> abc.json
+              curl -L \
+                -H "Accept: application/vnd.github+json" \
+                -H "X-GitHub-Api-Version: 2022-11-28" \
+                "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/jobs/${{ matric.ID }}" >> abc.json
 
-  #             echo "|Step number | Step Name | Step Status |" >> $GITHUB_STEP_SUMMARY
-  #             echo "| -------- | -------- | ------- |" >> $GITHUB_STEP_SUMMARY
-  #             jq -c '.steps | map(.) | .[]' abc.json | while read siteJSON;
-  #             do 
-  #               name=$(echo $siteJSON | jq -r .name) 
-  #               status=$(echo $siteJSON | jq -r .conclusion) 
-  #               number=$(echo $siteJSON | jq -r .number)
-  #               start_time=$(echo $siteJSON | jq -r .started_at)
-  #               complete_at=$(echo $siteJSON | jq -r .completed_at)
-  #               echo "| $number | $name | $status |" >> $GITHUB_STEP_SUMMARY
-  #             done
+              echo "|Step number | Step Name | Step Status |" >> $GITHUB_STEP_SUMMARY
+              echo "| -------- | -------- | ------- |" >> $GITHUB_STEP_SUMMARY
+              jq -c '.steps | map(.) | .[]' abc.json | while read siteJSON;
+              do 
+                name=$(echo $siteJSON | jq -r .name) 
+                status=$(echo $siteJSON | jq -r .conclusion) 
+                number=$(echo $siteJSON | jq -r .number)
+                start_time=$(echo $siteJSON | jq -r .started_at)
+                complete_at=$(echo $siteJSON | jq -r .completed_at)
+                echo "| $number | $name | $status |" >> $GITHUB_STEP_SUMMARY
+              done
