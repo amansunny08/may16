@@ -16,7 +16,7 @@ jobs:
            run: echo "Hello aman"    
 
          - name: step 4
-           continue-on-error: true
+          #  continue-on-error: 
            run:  "Hello aman"
 
          - name: print run id and data
