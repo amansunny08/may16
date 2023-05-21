@@ -25,7 +25,7 @@ jobs:
                 https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/attempts/${GITHUB_RUN_ATTEMPT}/jobs) | jq .jobs[].id >> xyz.json
               
               # echo "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/attempts/${GITHUB_RUN_ATTEMPT}/jobs)"  >> $GITHUB_STEP_SUMMARY            
-              for i in xyz.json; 
+              for i in `cat xyz.json`; 
               do
                    echo "Hello $i" >> $GITHUB_STEP_SUMMARY 
               done     
