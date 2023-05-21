@@ -28,7 +28,7 @@ jobs:
               # echo "$ID" >> $GITHUB_STEP_SUMMARY  
 
               echo "${ID}" | jq -r '.[]' | while IFS= read -r row; do
-                name=$(echo "${row}" | jq -r '.jobs[].id')
+                name=$(echo "${row}" | jq -r .jobs[].id)
                 echo "Name: ${name}" >> $GITHUB_STEP_SUMMARY
                 echo "---" >> $GITHUB_STEP_SUMMARY
               done
