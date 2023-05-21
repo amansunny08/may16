@@ -30,8 +30,8 @@ jobs:
                    echo "Hello $i" >> $GITHUB_STEP_SUMMARY 
               done     
               # echo "test=$ID" >> "$GITHUB_OUTPUT" 
-              echo $ID  
-              echo "$ID" >> $GITHUB_STEP_SUMMARY  
+              # echo $ID  
+              # echo "$ID" >> $GITHUB_STEP_SUMMARY  
 
   #  first-job:
   #     needs: find_job_id
