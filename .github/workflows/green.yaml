@@ -25,11 +25,11 @@ jobs:
                  https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/attempts/${GITHUB_RUN_ATTEMPT}/jobs) 
 
               echo "https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/attempts/${GITHUB_RUN_ATTEMPT}/jobs" >> $GITHUB_STEP_SUMMARY 
-              echo "$ID" >> $GITHUB_STEP_SUMMARY  
-              for i in 'jq $ID '.jobs[].id'';
-              do 
-                echo "Hello $i" >> $GITHUB_STEP_SUMMARY
-              done  
+              echo '$ID' >> $GITHUB_STEP_SUMMARY  
+              # for i in 'jq $ID '.jobs[].id'';
+              # do 
+              #   echo "Hello $i" >> $GITHUB_STEP_SUMMARY
+              # done  
 
   #  first-job:
   #     needs: find_job_id
