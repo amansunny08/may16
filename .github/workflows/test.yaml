@@ -8,26 +8,26 @@ jobs:
           run: echo "Hello World"
         - name: print gihub workflow id
           run: |
-              echo "Your workflow id is ${{ github.run_id }}"
-              echo "Home: ${HOME}"
-              echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
-              echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
-              echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
-              echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
-              echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
-              echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
-              echo "GITHUB_SHA: ${GITHUB_SHA}"
-              echo "GITHUB_REF: ${GITHUB_REF}"
+              echo "Your workflow id is ${{ github.run_id }}" >> $GITHUB_STEP_SUMMARY 
+              echo "Home: ${HOME}" >> $GITHUB_STEP_SUMMARY 
+              echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}" >> $GITHUB_STEP_SUMMARY 
+              echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}" >> $GITHUB_STEP_SUMMARY 
+              echo "GITHUB_ACTOR: ${GITHUB_ACTOR}" >> $GITHUB_STEP_SUMMARY 
+              echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}" >> $GITHUB_STEP_SUMMARY 
+              echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}" >> $GITHUB_STEP_SUMMARY 
+              echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}" >> $GITHUB_STEP_SUMMARY 
+              echo "GITHUB_SHA: ${GITHUB_SHA}" >> $GITHUB_STEP_SUMMARY 
+              echo "GITHUB_REF: ${GITHUB_REF}" >> $GITHUB_STEP_SUMMARY 
         - name: show github env
           run: |
-              echo "Path to workflow ${GITHUB_WORKFLOW_REF}"
-              echo "Name of workflow ${GITHUB_WORKFLOW}"
-              echo "${{ github.job}}"
-              echo "${{ github.run_id}}"
-              echo "${GITHUB_RUN_NUMBER}"
-              echo "${RUN_ID}"
-              echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${{github.run_id}}/${{ github.job }}"
-              echo "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+              echo "Path to workflow ${GITHUB_WORKFLOW_REF}" >> $GITHUB_STEP_SUMMARY 
+              echo "Name of workflow ${GITHUB_WORKFLOW}" >> $GITHUB_STEP_SUMMARY 
+              echo "${{ github.job}}" >> $GITHUB_STEP_SUMMARY 
+              echo "${{ github.run_id}}" >> $GITHUB_STEP_SUMMARY 
+              echo "${GITHUB_RUN_NUMBER}" >> $GITHUB_STEP_SUMMARY 
+              echo "${RUN_ID}" >> $GITHUB_STEP_SUMMARY 
+              echo "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${{github.run_id}}/${{ github.job }}" >> $GITHUB_STEP_SUMMARY 
+              echo "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> $GITHUB_STEP_SUMMARY 
 
 
         # - name: demo
